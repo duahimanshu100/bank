@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-12 m-b-30">
+    <h4 class="d-inline">Create Debtor </h4>
+
+    <form id='form_user_template' method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Save">
+    </form>
+  </div>
+  <!-- End Col -->
+</div>
+
+{% endblock %}

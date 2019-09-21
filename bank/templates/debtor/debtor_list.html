@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-12 m-b-30">
+    <h4 class="d-inline">Debtor List</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Account number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      {% for obj in object_list %}
+      <tr>
+        <td>{{obj.first_name}}</td>
+        <td>{{obj.last_name}}</td>
+        <td>{{obj.account.iban}}</td>
+        <td>{{obj.email}}</td>
+        <td>
+          <a href="{%url 'debtor-update' pk=obj.id %}" class="btn btn-sm">
+          <span class="glyphicon">&#x270f;</span>
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      </tbody>
+      <div class="col-lg-12">
+        <h5>No Debtors Yet</h5>
+      </div>
+      {% endfor %}
+
+    </table>
+
+  </div>
+  <!-- End Col -->
+</div>
+
+{% endblock %}
