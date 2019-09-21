@@ -23,3 +23,9 @@ class DebtorSerializer(serializers.ModelSerializer):
         fields = ['id', 'email',
                   'account',
                   'open_invoice', 'paid_invoice', 'overdue_invoice', 'canceled_invoice']
+
+
+class DebtorSerializerOnlyEmail(serializers.ModelSerializer):
+    class Meta:
+        model = Debtor
+        fields = ['email', ]

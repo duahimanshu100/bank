@@ -13,4 +13,4 @@ class Debtor(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='account')
 
     def __str__(self):
-        return self.first_name
+        return self.email

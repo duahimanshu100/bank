@@ -1,8 +1,7 @@
 from django.urls import path
-
-from bank.debtor.api.views import DebtorListApi
+from bank.invoice.api.views import InvoiceListApi
 
 urlpatterns = [
-    # path('', DebtorListApi.as_view(), name='debtor-list'),
+    path('', InvoiceListApi.as_view(), name='api-invoice-list'),
 
 ]
