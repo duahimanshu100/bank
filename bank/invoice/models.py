@@ -2,6 +2,9 @@ from django.db import models
 
 
 # Create your models here.
+from bank.debtor.models import Debtor
+
+
 class Invoice(models.Model):
     OPEN = 1
     PAID = 2
@@ -19,3 +22,7 @@ class Invoice(models.Model):
     )
     amount = models.FloatField()
     due_date = models.DateField()
+    debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.amount) + '-->' + str(self.status)
