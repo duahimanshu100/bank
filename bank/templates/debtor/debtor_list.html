@@ -3,6 +3,10 @@
 <div class="row">
   <div class="col-12 m-b-30">
     <h4 class="d-inline">Debtor List</h4>
+    <a href="{% url 'debtor-create'%}" class="btn btn-info btn-sm">
+      <span class="glyphicon glyphicon-plus"></span> &#x2b; Add Debtor
+    </a>
+    <hr>
     <table class="table">
       <thead>
       <tr>
@@ -23,7 +27,10 @@
         <td>{{obj.email}}</td>
         <td>
           <a href="{%url 'debtor-update' pk=obj.id %}" class="btn btn-sm">
-          <span class="glyphicon">&#x270f;</span>
+            <span class="glyphicon">&#x270f;</span>
+          </a>
+          <a href="{%url 'debtor-delete' pk=obj.id %}" class="btn btn-sm">
+            <span class="glyphicon">X</span>
           </a>
         </td>
       </tr>
