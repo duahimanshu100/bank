@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     'allauth.socialaccount.providers.google',
     "rest_framework",
+    "django_filters",
 ]
 
 LOCAL_APPS = [
@@ -272,7 +273,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
 
 # Your stuff...
 # ------------------------------------------------------------------------------
