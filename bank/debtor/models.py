@@ -10,7 +10,7 @@ class Debtor(models.Model):
     last_name = models.CharField(null=True, blank=True, max_length=255)
     email = models.EmailField(null=False, blank=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='account')
 
     def __str__(self):
         return self.first_name

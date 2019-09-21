@@ -10,21 +10,21 @@
     <table class="table">
       <thead>
       <tr>
+        <th scope="col">Action</th>
         <th scope="col">First name</th>
         <th scope="col">Last name</th>
         <th scope="col">Account number</th>
         <th scope="col">Email</th>
-        <th scope="col">Action</th>
+        <th scope="col">Invoice Open</th>
+        <th scope="col">Invoice Paid</th>
+        <th scope="col">Invoice Canceled</th>
+        <th scope="col">Invoice Overdue</th>
       </tr>
       </thead>
       <tbody>
 
       {% for obj in object_list %}
       <tr>
-        <td>{{obj.first_name}}</td>
-        <td>{{obj.last_name}}</td>
-        <td>{{obj.account.iban}}</td>
-        <td>{{obj.email}}</td>
         <td>
           <a href="{%url 'debtor-update' pk=obj.id %}" class="btn btn-sm">
             <span class="glyphicon">&#x270f;</span>
@@ -33,6 +33,15 @@
             <span class="glyphicon">X</span>
           </a>
         </td>
+        <td>{{obj.first_name}}</td>
+        <td>{{obj.last_name}}</td>
+        <td>{{obj.account.iban}}</td>
+        <td>{{obj.email}}</td>
+        <td>{{obj.open_invoice}}</td>
+        <td>{{obj.paid_invoice}}</td>
+        <td>{{obj.canceled_invoice}}</td>
+        <td>{{obj.overdue_invoice}}</td>
+
       </tr>
       {% empty %}
       </tbody>

@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count, Q
 from django.shortcuts import render
 
 # Create your views here.
@@ -14,7 +15,16 @@ class DebtorList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         owner = self.request.user
-        return self.model.objects.filter(owner=owner)
+        from bank.invoice.models import Invoice
+        return self.model.objects.filter(owner=owner) \
+            .annotate(
+            open_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.OPEN))) \
+            .annotate(
+            paid_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.PAID))) \
+            .annotate(
+            canceled_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.CANCELED)))\
+            .annotate(
+            overdue_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.OVERDUE)))
 
 
 class DebtorUpdateView(LoginRequiredMixin, UpdateView):

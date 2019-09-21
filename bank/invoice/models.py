@@ -22,7 +22,7 @@ class Invoice(models.Model):
     )
     amount = models.FloatField()
     due_date = models.DateField()
-    debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE)
+    debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE,related_name='debtor_invoice')
 
     def __str__(self):
         return str(self.amount) + '-->' + str(self.status)
