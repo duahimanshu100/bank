@@ -24,6 +24,16 @@ Moved to settings_.
 Basic Commands
 --------------
 
+Setting Up Project
+^^^^^^^^^^^^^^^^^^^^^
+docker-compose -f local.yml build
+
+Run the Project
+^^^^^^^^^^^^^^^^^^^^^
+The below command will run the project on 127.0.0.1:8000
+
+docker-compose -f local.yml up
+
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -31,51 +41,16 @@ Setting Up Your Users
 
 * To create an **superuser account**, use this command::
 
-    $ python manage.py createsuperuser
+    $ docker-compose -f local.yml run --rm django python manage.py createsuoeruser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
-Type checks
-^^^^^^^^^^^
+Migrationss
+^^^^^^^^^^^^^^^^^^^^^
+* To create and run migrations, use this command::
 
-Running type checks with mypy:
-
-::
-
-  $ mypy bank
-
-Test coverage
-^^^^^^^^^^^^^
-
-To run the tests, check your test coverage, and generate an HTML coverage report::
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-Running tests with py.test
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-  $ pytest
-
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
-
-
-
-
-
-Deployment
-----------
-
-The following details how to deploy this application.
-
+    $ docker-compose -f local.yml run --rm django python manage.py makemigrations
+    $ docker-compose -f local.yml run --rm django python manage.py migrate
 
 
 Docker
