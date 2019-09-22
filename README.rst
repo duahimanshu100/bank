@@ -24,15 +24,16 @@ Moved to settings_.
 Basic Commands
 --------------
 
-Setting Up Project
+Setting Up Project and Installing dependencies
 ^^^^^^^^^^^^^^^^^^^^^
-docker-compose -f local.yml build
+
+``docker-compose -f local.yml build``
 
 Run the Project
 ^^^^^^^^^^^^^^^^^^^^^
 The below command will run the project on 127.0.0.1:8000
 
-docker-compose -f local.yml up
+``docker-compose -f local.yml up``
 
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
@@ -61,4 +62,16 @@ See detailed `cookiecutter-django Docker documentation`_.
 .. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
 
 
+API
+^^^^^^
+Invoice List api
+/api/invoice/
+
+Debtor List api
+/api/debtors/
+
+Debtor views urls
+^^^^^^
+List debtor /debtors/
+Create debtor /debtors/create
 
