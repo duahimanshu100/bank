@@ -4,10 +4,13 @@ from django.db.models import Count, Q
 from bank.debtor.models import Debtor
 from django_filters import rest_framework as filters
 
+from bank.invoice.models import Invoice
+
 
 class DebtorFilter(filters.FilterSet):
-    invoice_status = django_filters.NumberFilter(method="filter_invoice_status")
-    invoice_count = django_filters.NumberFilter(method="filter_invoice_count")
+    invoice_status = django_filters.ChoiceFilter(choices=Invoice.STATUS_CHOICES, method="filter_invoice_status",
+                                                 label='Invoice status')
+    invoice_count = django_filters.NumberFilter(method="filter_invoice_count", label='Invoice count')
 
     class Meta:
         model = Debtor

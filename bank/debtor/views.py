@@ -16,13 +16,13 @@ class DebtorList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         owner = self.request.user
         from bank.invoice.models import Invoice
-        return self.model.objects.filter(owner=owner) \
+        return self.model.objects \
             .annotate(
             open_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.OPEN))) \
             .annotate(
             paid_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.PAID))) \
             .annotate(
-            canceled_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.CANCELED)))\
+            canceled_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.CANCELED))) \
             .annotate(
             overdue_invoice=Count('debtor_invoice__status', filter=Q(debtor_invoice__status=Invoice.OVERDUE)))
 
@@ -56,3 +56,7 @@ class DebtorCreate(LoginRequiredMixin, CreateView):
 class DebtorDeleteView(DeleteView):
     model = Debtor
     success_url = reverse_lazy('debtor-list')
+
+    def get_queryset(self):
+        owner = self.request.user
+        return self.model.objects.filter(owner=owner)
